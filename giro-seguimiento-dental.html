@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#176b5b">
+<meta name="description" content="Registra cada cuarto de vuelta del aparato dental y consulta el historial fácilmente.">
+<title>Giro — seguimiento dental</title>
+<style>
+:root{--green:#176b5b;--green2:#218775;--mint:#e6f5ef;--ink:#18332f;--muted:#6b817c;--paper:#f5faf8;--white:#fff;--line:#dce9e4;--orange:#f4b95e;--red:#b94d4d;--shadow:0 12px 32px rgba(20,70,60,.09)}
+*{box-sizing:border-box}html{min-height:100%;background:var(--paper)}body{margin:0;color:var(--ink);font-family:ui-rounded,"SF Pro Rounded",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--paper);padding:0 0 calc(24px + env(safe-area-inset-bottom))}
+button,input,select{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #9ad7c6;outline-offset:3px}
+header{background:linear-gradient(145deg,#176b5b,#258a76);color:white;padding:calc(20px + env(safe-area-inset-top)) 20px 30px;border-radius:0 0 30px 30px}
+.top{display:flex;align-items:center;justify-content:space-between;max-width:650px;margin:auto}.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:-.04em;font-size:1.35rem}.logo{width:42px;height:42px;border-radius:14px;background:#ffffff24;display:grid;place-items:center;font-size:1.45rem}.tag{font-size:.72rem;border:1px solid #ffffff55;border-radius:99px;padding:7px 10px;color:#eafff7}
+.hero{max-width:650px;margin:25px auto 0}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.72rem;font-weight:800;color:#bde9db}.hero h1{font-size:clamp(1.9rem,7vw,2.65rem);line-height:1.04;letter-spacing:-.055em;margin:8px 0 9px}.hero p{margin:0;color:#e0f5ee;max-width:420px;line-height:1.5;font-size:.94rem}
+main{max-width:650px;margin:-15px auto 0;padding:0 16px;position:relative}.card{background:var(--white);border:1px solid #e6efeb;border-radius:24px;padding:20px;box-shadow:var(--shadow);margin-bottom:14px}.action-card{text-align:center;padding:22px 20px 20px}.small-label{font-size:.76rem;color:var(--muted);font-weight:750;letter-spacing:.06em;text-transform:uppercase}.counter-row{display:flex;justify-content:center;align-items:center;gap:14px;margin:12px 0 17px}.counter{font-size:3.3rem;line-height:1;font-weight:850;letter-spacing:-.07em}.counter-sub{font-size:.86rem;color:var(--muted);text-align:left;line-height:1.25}.counter-sub strong{display:block;color:var(--ink);font-size:1rem}.turn-btn{border:0;background:linear-gradient(145deg,#218775,#176b5b);color:white;border-radius:23px;width:100%;min-height:78px;display:flex;align-items:center;justify-content:center;gap:13px;font-size:1.18rem;font-weight:850;box-shadow:0 8px 0 #0e5549,0 14px 24px #176b5b24;transition:transform .12s,box-shadow .12s}.turn-btn:active{transform:translateY(5px);box-shadow:0 3px 0 #0e5549}.turn-icon{font-size:1.9rem;background:#ffffff25;border-radius:15px;width:48px;height:48px;display:grid;place-items:center}.under-button{font-size:.78rem;color:var(--muted);margin:14px 0 0}.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}.stat{background:var(--mint);border-radius:19px;padding:15px}.stat .emoji{font-size:1.2rem}.stat .value{font-size:1.55rem;font-weight:850;letter-spacing:-.04em;margin-top:6px}.stat .caption{font-size:.78rem;color:#54736b;margin-top:2px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.section-head h2{font-size:1.05rem;letter-spacing:-.025em;margin:0}.text-btn{border:0;background:transparent;color:var(--green);font-size:.83rem;font-weight:800;padding:8px 0}.empty{text-align:center;padding:20px 8px;color:var(--muted);font-size:.9rem}.history{display:flex;flex-direction:column;gap:9px}.entry{display:flex;align-items:center;gap:12px;padding:12px;background:#f8fbfa;border:1px solid #e7f0ec;border-radius:16px}.entry-icon{width:40px;height:40px;border-radius:13px;background:var(--mint);display:grid;place-items:center;font-size:1.1rem;flex-shrink:0}.entry-main{min-width:0;flex:1}.entry-main strong{display:block;font-size:.9rem}.entry-main span{display:block;color:var(--muted);font-size:.78rem;margin-top:3px}.delete-entry{border:0;background:#fff0f0;color:var(--red);width:34px;height:34px;border-radius:11px;font-size:1rem;flex-shrink:0}.settings-grid{display:grid;grid-template-columns:1fr;gap:14px}.field label{display:block;font-weight:750;font-size:.84rem;margin-bottom:7px}.field input,.field select{width:100%;border:1px solid var(--line);background:#fbfdfc;color:var(--ink);border-radius:13px;padding:13px 12px;min-height:47px}.field small{display:block;color:var(--muted);font-size:.76rem;line-height:1.45;margin-top:6px}.inline{display:flex;gap:9px}.inline>*{flex:1;min-width:0}.secondary{border:1px solid var(--line);background:white;color:var(--green);border-radius:13px;padding:12px;font-weight:800}.primary-small{border:0;background:var(--green);color:white;border-radius:13px;padding:12px;font-weight:800}.notice{font-size:.8rem;line-height:1.5;color:#59756d;background:#f0f8f5;padding:13px 14px;border-radius:15px;margin-top:14px}.notice strong{color:var(--ink)}.reminder-status{display:flex;gap:10px;align-items:flex-start;padding:12px;background:#f8fbfa;border:1px solid var(--line);border-radius:15px;font-size:.82rem;line-height:1.45}.dot{width:9px;height:9px;border-radius:50%;background:#d39a37;margin-top:5px;flex-shrink:0}.dot.on{background:#218775}.footer{max-width:650px;margin:20px auto 0;padding:0 22px;color:#82948e;font-size:.73rem;line-height:1.5;text-align:center}.toast{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translate(-50%,130px);opacity:0;background:#163e36;color:white;padding:13px 18px;border-radius:14px;box-shadow:var(--shadow);font-size:.87rem;font-weight:700;transition:all .25s;z-index:10;width:max-content;max-width:calc(100vw - 32px);text-align:center}.toast.show{transform:translate(-50%,0);opacity:1}.modal-backdrop{position:fixed;inset:0;background:#0c2924a8;display:none;align-items:flex-end;justify-content:center;padding:14px;z-index:20}.modal-backdrop.open{display:flex}.modal{background:white;border-radius:24px;padding:22px;width:100%;max-width:500px;box-shadow:var(--shadow)}.modal h2{margin:0 0 8px;font-size:1.25rem}.modal p{font-size:.9rem;line-height:1.5;color:var(--muted)}.modal-actions{display:flex;gap:9px;margin-top:18px}.modal-actions button{flex:1}
+@media(min-width:560px){main{padding:0 22px}.card{padding:22px}.settings-grid{grid-template-columns:1fr 1fr}.modal-backdrop{align-items:center}.hero{margin-top:30px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="brand"><div class="logo" aria-hidden="true">↻</div> giro</div>
+    <span class="tag">SEGUIMIENTO DENTAL</span>
+  </div>
+  <div class="hero">
+    <div class="eyebrow">Un pequeño paso cada vez</div>
+    <h1>Cada giro,<br>bien registrado.</h1>
+    <p>Marca cada cuarto de vuelta y lleva un historial claro, sin tener que acordarte de memoria.</p>
+  </div>
+</header>
+<main>
+  <section class="card action-card" aria-labelledby="counterHeading">
+    <div class="small-label" id="counterHeading">Cuartos de vuelta registrados</div>
+    <div class="counter-row">
+      <div class="counter" id="totalCount">0</div>
+      <div class="counter-sub"><strong id="turnWord">giros</strong>de ¼ de vuelta<br>en total</div>
+    </div>
+    <button class="turn-btn" id="addTurn" type="button">
+      <span class="turn-icon" aria-hidden="true">↻</span>
+      <span>Registrar ¼ de vuelta</span>
+    </button>
+    <p class="under-button">Se guardará automáticamente la fecha y la hora de este dispositivo.</p>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="emoji" aria-hidden="true">📅</div><div class="value" id="todayCount">0</div><div class="caption">Hoy</div></div>
+    <div class="stat"><div class="emoji" aria-hidden="true">🕒</div><div class="value" id="lastTime">—</div><div class="caption">Último registro</div></div>
+  </div>
+
+  <section class="card">
+    <div class="section-head"><h2>Historial reciente</h2><button class="text-btn" id="exportBtn" type="button">Exportar CSV ↓</button></div>
+    <div id="history" class="history"><div class="empty">Todavía no hay registros. Cuando marques el primer giro, aparecerá aquí.</div></div>
+    <div class="inline" style="margin-top:13px">
+      <button class="secondary" id="undoBtn" type="button" disabled>↶ Deshacer último</button>
+      <button class="secondary" id="allHistoryBtn" type="button">Ver historial completo</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-head"><h2>Recordatorios</h2><span aria-hidden="true">🔔</span></div>
+    <div class="settings-grid">
+      <div class="field">
+        <label for="interval">Avisarme cada…</label>
+        <select id="interval">
+          <option value="0">Sin recordatorio</option>
+          <option value="6">6 horas</option>
+          <option value="8">8 horas</option>
+          <option value="12">12 horas</option>
+          <option value="24">24 horas</option>
+          <option value="48">48 horas</option>
+          <option value="72">72 horas</option>
+          <option value="168">7 días</option>
+        </select>
+        <small>Elige solo la pauta que te haya indicado el ortodoncista. La aplicación no recomienda una frecuencia médica.</small>
+      </div>
+      <div class="field">
+        <label for="reminderTime">Hora de referencia (opcional)</label>
+        <input id="reminderTime" type="time" value="20:00">
+        <small>Sirve como referencia visual; no garantiza que el móvil emita una alarma a esa hora.</small>
+      </div>
+    </div>
+    <div class="reminder-status" style="margin-top:14px">
+      <span class="dot" id="reminderDot"></span>
+      <div><strong id="reminderTitle">Recordatorios desactivados</strong><div id="reminderDescription">Activa una frecuencia si quieres ver cuándo correspondería el siguiente registro.</div></div>
+    </div>
+    <div class="inline" style="margin-top:12px">
+      <button class="primary-small" id="notifyBtn" type="button">Activar avisos del navegador</button>
+      <button class="secondary" id="saveSettings" type="button">Guardar ajustes</button>
+    </div>
+    <div class="notice"><strong>Importante:</strong> una página HTML por sí sola no puede garantizar alarmas en segundo plano ni enviar correos. Las notificaciones del navegador dependen del permiso, del navegador y de que el dispositivo permita ejecutarlas. Para avisos fiables por correo o push con la app cerrada hace falta un servicio externo o un backend.</div>
+  </section>
+
+  <section class="card">
+    <div class="section-head"><h2>Datos de seguimiento</h2><span aria-hidden="true">🦷</span></div>
+    <div class="settings-grid">
+      <div class="field"><label for="patientName">Nombre o apodo (opcional)</label><input id="patientName" maxlength="40" placeholder="Ej. Peque"></div>
+      <div class="field"><label for="deviceName">Aparato (opcional)</label><input id="deviceName" maxlength="50" placeholder="Ej. Expansor dental"></div>
+    </div>
+    <div class="inline" style="margin-top:13px">
+      <button class="secondary" id="saveProfile" type="button">Guardar datos</button>
+      <button class="secondary" id="printBtn" type="button">Imprimir / PDF</button>
+    </div>
+    <div class="notice">Los registros se guardan en este navegador, en este dispositivo. No se suben automáticamente a internet ni los ve el dentista. Si borras los datos del navegador o cambias de móvil, podrías perderlos: exporta el CSV periódicamente.</div>
+  </section>
+  <section class="card">
+    <div class="section-head"><h2>Privacidad y control</h2><span aria-hidden="true">🔒</span></div>
+    <p style="font-size:.86rem;line-height:1.5;color:var(--muted);margin:0 0 13px">Puedes descargar el historial o borrar todos los registros. La eliminación no se puede deshacer.</p>
+    <button class="secondary" id="clearBtn" type="button" style="width:100%;color:var(--red)">Borrar todos los registros</button>
+  </section>
+</main>
+<footer class="footer">GIRO · Prototipo de seguimiento familiar · No sustituye las indicaciones del ortodoncista.</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <h2 id="modalTitle">Confirmar acción</h2><p id="modalText">¿Quieres continuar?</p>
+    <div class="modal-actions"><button class="secondary" id="modalCancel" type="button">Cancelar</button><button class="primary-small" id="modalConfirm" type="button">Confirmar</button></div>
+  </div>
+</div>
+<script>
+(() => {
+  const KEY = 'giro-dental-v1';
+  const $ = id => document.getElementById(id);
+  let state = {entries:[], settings:{interval:0, reminderTime:'20:00', patientName:'', deviceName:''}};
+  let showAll = false, modalAction = null, toastTimer = null;
+
+  function load() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (saved && Array.isArray(saved.entries)) state = {...state, ...saved, settings:{...state.settings, ...(saved.settings||{})}};
+    } catch(e) {}
+    $('interval').value = String(state.settings.interval || 0);
+    $('reminderTime').value = state.settings.reminderTime || '20:00';
+    $('patientName').value = state.settings.patientName || '';
+    $('deviceName').value = state.settings.deviceName || '';
+  }
+  function persist() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); }
+    catch(e) { toast('No se pudo guardar. Comprueba el espacio disponible del navegador.'); }
+  }
+  function dateOf(iso) { return new Date(iso); }
+  function sameDay(a,b) { return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+  function dateText(d) { return new Intl.DateTimeFormat('es-ES',{day:'2-digit',month:'short',year:'numeric'}).format(d); }
+  function timeText(d) { return new Intl.DateTimeFormat('es-ES',{hour:'2-digit',minute:'2-digit'}).format(d); }
+  function fullText(d) { return new Intl.DateTimeFormat('es-ES',{weekday:'short',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(d); }
+  function toast(msg) {
+    const el=$('toast'); el.textContent=msg; el.classList.add('show');
+    clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove('show'),2600);
+  }
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function render() {
+    const entries=[...state.entries].sort((a,b)=>new Date(b.at)-new Date(a.at));
+    const today=entries.filter(e=>sameDay(dateOf(e.at),new Date())).length;
+    $('totalCount').textContent=entries.length;
+    $('turnWord').textContent=entries.length===1?'giro':'giros';
+    $('todayCount').textContent=today;
+    $('lastTime').textContent=entries.length?timeText(dateOf(entries[0].at)):'—';
+    $('undoBtn').disabled=!entries.length;
+    const shown=showAll?entries:entries.slice(0,5);
+    $('history').innerHTML=shown.length?shown.map(e=>{
+      const d=dateOf(e.at);
+      return `<div class="entry"><div class="entry-icon" aria-hidden="true">↻</div><div class="entry-main"><strong>¼ de vuelta registrada</strong><span>${escapeHtml(fullText(d))}</span></div><button class="delete-entry" data-delete="${escapeHtml(e.id)}" aria-label="Eliminar registro" title="Eliminar registro">×</button></div>`;
+    }).join(''):'<div class="empty">Todavía no hay registros. Cuando marques el primer giro, aparecerá aquí.</div>';
+    $('allHistoryBtn').textContent=showAll?'Mostrar solo recientes':'Ver historial completo';
+    updateReminder();
+  }
+  function addTurn() {
+    const now=new Date();
+    state.entries.push({id: (crypto.randomUUID?crypto.randomUUID():String(Date.now())+'-'+Math.random()), at:now.toISOString()});
+    persist(); render(); toast('Giro registrado · '+timeText(now));
+    if(navigator.vibrate) navigator.vibrate(35);
+  }
+  function updateReminder() {
+    const interval=Number(state.settings.interval||0);
+    const entries=[...state.entries].sort((a,b)=>new Date(b.at)-new Date(a.at));
+    const dot=$('reminderDot');
+    if(!interval) {
+      dot.classList.remove('on'); $('reminderTitle').textContent='Recordatorios desactivados';
+      $('reminderDescription').textContent='Activa una frecuencia si quieres ver cuándo correspondería el siguiente registro.';
+      return;
+    }
+    if(!entries.length) {
+      dot.classList.add('on'); $('reminderTitle').textContent='Frecuencia configurada';
+      $('reminderDescription').textContent='Registra el primer giro para calcular la siguiente hora orientativa.';
+      return;
+    }
+    const next=new Date(new Date(entries[0].at).getTime()+interval*3600000);
+    const diff=next-Date.now();
+    dot.classList.toggle('on',diff>0);
+    $('reminderTitle').textContent=diff>0?'Siguiente giro orientativo':'La hora orientativa ya ha pasado';
+    $('reminderDescription').textContent=(diff>0?'Según la frecuencia configurada, tocaría a las ':'La hora orientativa era ')+fullText(next)+'. Esto es solo un cálculo; no es una alarma programada.';
+  }
+  function saveSettings() {
+    state.settings.interval=Number($('interval').value||0);
+    state.settings.reminderTime=$('reminderTime').value||'20:00';
+    persist(); render(); toast('Ajustes guardados');
+  }
+  function saveProfile() {
+    state.settings.patientName=$('patientName').value.trim();
+    state.settings.deviceName=$('deviceName').value.trim();
+    persist(); toast('Datos guardados en este dispositivo');
+  }
+  function csvEscape(s) { return '"'+String(s).replace(/"/g,'""')+'"'; }
+  function exportCSV() {
+    const rows=[['Fecha y hora','Cuarto de vuelta','Nombre/apodo','Aparato']];
+    [...state.entries].sort((a,b)=>new Date(a.at)-new Date(b.at)).forEach(e=>rows.push([fullText(dateOf(e.at)),'1/4',state.settings.patientName,state.settings.deviceName]));
+    const csv='\ufeff'+rows.map(r=>r.map(csvEscape).join(';')).join('\r\n');
+    const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+    const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url;
+    a.download='giro-historial-'+new Date().toISOString().slice(0,10)+'.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    toast('Preparando el archivo CSV');
+  }
+  function confirmModal(title, text, action, button='Confirmar') {
+    $('modalTitle').textContent=title; $('modalText').textContent=text; $('modalConfirm').textContent=button;
+    modalAction=action; $('modalBackdrop').classList.add('open');
+  }
+  $('modalCancel').addEventListener('click',()=>{$('modalBackdrop').classList.remove('open');modalAction=null;});
+  $('modalConfirm').addEventListener('click',()=>{const fn=modalAction;$('modalBackdrop').classList.remove('open');modalAction=null;if(fn)fn();});
+  $('modalBackdrop').addEventListener('click',e=>{if(e.target===$('modalBackdrop')){$('modalBackdrop').classList.remove('open');modalAction=null;}});
+  $('addTurn').addEventListener('click',addTurn);
+  $('undoBtn').addEventListener('click',()=>confirmModal('Deshacer último giro','Se eliminará el registro más reciente. ¿Quieres continuar?',()=>{
+    const newest=state.entries.reduce((a,b)=>new Date(a.at)>new Date(b.at)?a:b);
+    state.entries=state.entries.filter(e=>e.id!==newest.id);persist();render();toast('Último registro eliminado');
+  },'Deshacer'));
+  $('allHistoryBtn').addEventListener('click',()=>{showAll=!showAll;render();});
+  $('exportBtn').addEventListener('click',exportCSV);
+  $('saveSettings').addEventListener('click',saveSettings);
+  $('saveProfile').addEventListener('click',saveProfile);
+  $('interval').addEventListener('change',()=>{state.settings.interval=Number($('interval').value||0);persist();render();});
+  $('reminderTime').addEventListener('change',()=>{state.settings.reminderTime=$('reminderTime').value||'20:00';persist();});
+  $('printBtn').addEventListener('click',()=>window.print());
+  $('history').addEventListener('click',e=>{
+    const btn=e.target.closest('[data-delete]'); if(!btn)return;
+    const id=btn.getAttribute('data-delete');
+    confirmModal('Eliminar registro','¿Quieres eliminar este cuarto de vuelta del historial?',()=>{
+      state.entries=state.entries.filter(x=>x.id!==id);persist();render();toast('Registro eliminado');
+    },'Eliminar');
+  });
+  $('clearBtn').addEventListener('click',()=>confirmModal('Borrar todo el historial','Se eliminarán todos los registros guardados en este navegador. Esta acción no se puede deshacer.',()=>{
+    state.entries=[];persist();render();toast('Historial borrado');
+  },'Borrar todo'));
+  $('notifyBtn').addEventListener('click',async()=>{
+    if(!('Notification' in window)){toast('Este navegador no admite notificaciones web.');return;}
+    if(!window.isSecureContext){toast('Abre la app mediante HTTPS (por ejemplo, GitHub Pages).');return;}
+    try {
+      const permission=await Notification.requestPermission();
+      if(permission==='granted') {
+        new Notification('GIRO está listo',{body:'Los avisos del navegador están permitidos, pero esta página no puede programar alarmas fiables con la app cerrada.'});
+        toast('Permiso de notificaciones concedido');
+      } else toast('No se concedió permiso para notificaciones');
+    } catch(e) {toast('No se pudieron activar las notificaciones en este navegador.');}
+  });
+  // Keep the time estimate fresh while the page is open; this is not a background alarm.
+  setInterval(updateReminder,60000);
+  load(); render();
+})();
+</script>
+<style>
+@media print{header{background:white!important;color:#111!important;padding:10px;border:1px solid #aaa}.hero p,.eyebrow,.tag,.turn-btn,.under-button,.stats,.text-btn,.inline,.notice,.footer,.toast{display:none!important}main{margin:0;padding:0;max-width:none}.card{box-shadow:none;break-inside:avoid;border:1px solid #bbb}.card:nth-of-type(n+3){display:none}body{background:white}.hero h1{font-size:22px}.brand{color:#111}.logo{background:#eee;color:#111}}
+</style>
+</body>
+</html>
